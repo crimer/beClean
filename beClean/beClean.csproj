@@ -6,13 +6,33 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Svg\005-living-room-2.svg" />
+    <None Remove="Resources\Svg\013-kitchen.svg" />
+    <None Remove="Resources\Svg\023-hanger.svg" />
+    <None Remove="Resources\Svg\devices\carbon-dioxide.svg" />
+    <None Remove="Resources\Svg\devices\fire.svg" />
+    <None Remove="Resources\Svg\devices\humidity.svg" />
+    <None Remove="Resources\Svg\devices\lightbulb.svg" />
+    <None Remove="Resources\Svg\devices\pressure.svg" />
+    <None Remove="Resources\Svg\devices\temperature.svg" />
     <None Remove="Resources\Svg\devices_svg_icon.svg" />
     <None Remove="Resources\Svg\logo_cloud.svg" />
     <None Remove="Resources\Svg\mdi_power_settings_new.svg" />
     <None Remove="Resources\Svg\rooms_svg_icon.svg" />
+    <None Remove="Resources\Svg\room_bedroom.svg" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\devices\carbon-dioxide.svg" />
+    <EmbeddedResource Include="Resources\Svg\devices\fire.svg" />
+    <EmbeddedResource Include="Resources\Svg\devices\humidity.svg" />
+    <EmbeddedResource Include="Resources\Svg\devices\lightbulb.svg" />
+    <EmbeddedResource Include="Resources\Svg\devices\pressure.svg" />
+    <EmbeddedResource Include="Resources\Svg\devices\temperature.svg" />
+    <EmbeddedResource Include="Resources\Svg\rooms\bedroom.svg" />
+    <EmbeddedResource Include="Resources\Svg\rooms\living-room.svg" />
+    <EmbeddedResource Include="Resources\Svg\rooms\kitchen.svg" />
+    <EmbeddedResource Include="Resources\Svg\rooms\hanger.svg" />
     <EmbeddedResource Include="Resources\Svg\devices_svg_icon.svg" />
     <EmbeddedResource Include="Resources\Svg\logo_cloud.svg" />
     <EmbeddedResource Include="Resources\Svg\mdi_power_settings_new.svg" />
@@ -41,6 +61,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Master\AppMaster.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\OverviewPage\OverviewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\RoomsPage\RoomsPage.xaml">

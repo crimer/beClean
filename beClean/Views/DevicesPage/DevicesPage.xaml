@@ -5,10 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              Visual="Material"
-               Title="Устройства"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:base="clr-namespace:beClean.Views.Base"
+             Title="Устройства"
              x:Class="beClean.Views.DevicesPage.DevicesPage">
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource Gray_background}">

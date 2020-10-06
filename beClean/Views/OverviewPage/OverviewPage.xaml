@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Visual="Material"
+    xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:base="clr-namespace:beClean.Views.Base"
+    Title="Обзор"
+    x:Class="beClean.Views.OverviewPage.OverviewPage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource Gray_background}">
+                <CollectionView EmptyView="Устройств нет" SelectionMode="Single" ItemsSource="{Binding Devices}" Margin="10,10">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="15" HorizontalItemSpacing="15"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView x:Name="swipeview">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal" />
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="#B0DEFA" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Настройки" IconImageSource="ic_settings.png"
+                                                BackgroundColor="#00BCD4"
+                                                />
+
+                                    </SwipeItems>
+                                    <!--Command="{Binding Source={x:Reference Page}, Path=BindingContext.EditObjectInfoCommand}"
+                                                CommandParameter="{Binding .}"-->
+                                </SwipeView.LeftItems>
+                                <Frame CornerRadius="20" BackgroundColor="White" HasShadow="True" HeightRequest="120">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal" >
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+
+                                        <svg:SvgCachedImage
+                                            Grid.Row="0"
+                                            Source="{Binding IconSource}"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="CenterAndExpand"
+                                            WidthRequest="55"
+                                            HeightRequest="55"/>
+                                        <StackLayout Grid.Row="1">
+                                            <Label Text="{Binding Name}" 
+                                                FontSize="20" FontAttributes="Bold" TextColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+                                            <Label Text="{Binding Value,StringFormat='{0}%'}" 
+                                                FontSize="18" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </SwipeView>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</base:BasePage>

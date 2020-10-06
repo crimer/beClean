@@ -1,17 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-               Title="Комнаты"
-             xmlns:base="clr-namespace:beClean.Views.Base"
-             x:Class="beClean.Views.RoomsPage.RoomsPage">
+<base:BasePage 
+        xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Комнаты"
+        Visual="Material"
+        xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+        xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+        xmlns:base="clr-namespace:beClean.Views.Base"
+        x:Class="beClean.Views.RoomsPage.RoomsPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Rooms page" FontSize="Large"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout BackgroundColor="{StaticResource Gray_background}">
+            <CollectionView EmptyView="Устройств нет" SelectionMode="Single" ItemsSource="{Binding Rooms}" Margin="10,10">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="15" HorizontalItemSpacing="15"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="20" BackgroundColor="White" HasShadow="True" HeightRequest="120">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" >
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <FlexLayout JustifyContent="SpaceBetween" AlignItems="Start" Direction="Column" >
+                                
+                                <svg:SvgCachedImage
+                                        Grid.Row="0"
+                                        Source="{Binding IconSource}"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="CenterAndExpand"
+                                        WidthRequest="70"
+                                        HeightRequest="70"/>
+                                <StackLayout Grid.Row="1">
+                                    <Label Text="{Binding Name}" 
+                                            FontSize="20" FontAttributes="Bold" TextColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+                                    
+                                </StackLayout>
+                            </FlexLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </base:BasePage>

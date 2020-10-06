@@ -16,6 +16,7 @@ namespace beClean.Views.RoomsPage
         public RoomsPage()
         {
             InitializeComponent();
+            BindingContext = new RoomsPageVM();
         }
     }
 }
