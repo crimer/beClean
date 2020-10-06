@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage 
+        xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Visual="Material"
+        xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+        x:Class="beClean.Views.Master.AppMaster">
+  <MasterDetailPage.Master>
+        <ContentPage Title="Menu">
+                <StackLayout BackgroundColor="White">
+
+                    <CollectionView EmptyView="Страниц нет" x:Name="PageCollection" SelectionMode="Single" SelectionChanged="PageCollection_SelectionChanged">
+                        <CollectionView.Header>
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="10"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <StackLayout Grid.Column="1" Grid.Row="1">
+                                    <svg:SvgCachedImage
+                                        Source="resource://beClean.Resources.Svg.logo_cloud.svg"
+                                        HorizontalOptions="Start"
+                                        WidthRequest="40"
+                                        HeightRequest="40" Margin="0,0,0,30"/>
+                                    <Label Text="beClean" FontAttributes="Bold" TextColor="Black" FontSize="24"/>
+                                    <Label Text="Climate control system" FontSize="14"/>
+                                    <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="#DFDFDF" Margin="0,20,0,0"/>
+                                </StackLayout>
+                            </Grid>
+                        </CollectionView.Header>
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="15,10" >
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal"/>
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary_lightBlue}" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="48"/>
+                                    </Grid.RowDefinitions>
+
+                                    <svg:SvgCachedImage
+                                        Grid.Column="0"
+                                        Source="{Binding IconSource}"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="CenterAndExpand"
+                                        WidthRequest="25"
+                                        HeightRequest="25"/>
+                                <Label Grid.Column="1" Text="{Binding Title}" TextColor="Black"
+                                         FontSize="18" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+
+                            </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+
+                </StackLayout>
+            
+        </ContentPage>
+  </MasterDetailPage.Master>
+    
+    <MasterDetailPage.Detail>
+        <NavigationPage />
+    </MasterDetailPage.Detail>
+</MasterDetailPage>
