@@ -26,7 +26,7 @@
                                 </Grid.RowDefinitions>
                                 <StackLayout Grid.Column="1" Grid.Row="1">
                                     <svg:SvgCachedImage
-                                        Source="resource://beClean.Resources.Svg.logo_cloud.svg"
+                                        Source="resource://beClean.Resources.Svg.master.beClean_logo.svg"
                                         HorizontalOptions="Start"
                                         WidthRequest="40"
                                         HeightRequest="40" Margin="0,0,0,30"/>

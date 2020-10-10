@@ -17,6 +17,7 @@
     <None Remove="Resources\Svg\devices\temperature.svg" />
     <None Remove="Resources\Svg\devices_svg_icon.svg" />
     <None Remove="Resources\Svg\logo_cloud.svg" />
+    <None Remove="Resources\Svg\master\overview.svg" />
     <None Remove="Resources\Svg\mdi_power_settings_new.svg" />
     <None Remove="Resources\Svg\rooms_svg_icon.svg" />
     <None Remove="Resources\Svg\room_bedroom.svg" />
@@ -29,18 +30,21 @@
     <EmbeddedResource Include="Resources\Svg\devices\lightbulb.svg" />
     <EmbeddedResource Include="Resources\Svg\devices\pressure.svg" />
     <EmbeddedResource Include="Resources\Svg\devices\temperature.svg" />
+    <EmbeddedResource Include="Resources\Svg\master\overview.svg" />
     <EmbeddedResource Include="Resources\Svg\rooms\bedroom.svg" />
     <EmbeddedResource Include="Resources\Svg\rooms\living-room.svg" />
     <EmbeddedResource Include="Resources\Svg\rooms\kitchen.svg" />
     <EmbeddedResource Include="Resources\Svg\rooms\hanger.svg" />
-    <EmbeddedResource Include="Resources\Svg\devices_svg_icon.svg" />
-    <EmbeddedResource Include="Resources\Svg\logo_cloud.svg" />
-    <EmbeddedResource Include="Resources\Svg\mdi_power_settings_new.svg" />
-    <EmbeddedResource Include="Resources\Svg\rooms_svg_icon.svg" />
+    <EmbeddedResource Include="Resources\Svg\master\devices.svg" />
+    <EmbeddedResource Include="Resources\Svg\master\beClean_logo.svg" />
+    <EmbeddedResource Include="Resources\Svg\devices\device_power.svg" />
+    <EmbeddedResource Include="Resources\Svg\master\rooms.svg" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Behaviors.Forms" Version="1.4.0" />
+    <PackageReference Include="Plugin.BLE" Version="2.1.1" />
+    <PackageReference Include="Plugin.BluetoothClassic" Version="1.1.5" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />  
@@ -54,6 +58,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\DevicesPage\DeviceBC\DeviceBC.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DevicesPage\DeviceBLE\DeviceBLE.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\DevicesPage\DevicesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -61,6 +77,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Master\AppMaster.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\NotConnected\NotConnected.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\OverviewPage\OverviewPage.xaml">

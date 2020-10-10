@@ -30,15 +30,23 @@
                                         </VisualState>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
-                                <SwipeView.LeftItems>
+                                <SwipeView.RightItems>
                                     <SwipeItems>
                                         <SwipeItem Text="Настройки" IconImageSource="ic_settings.png"
-                                                BackgroundColor="#00BCD4"
+                                                BackgroundColor="#fc5130"
                                                 />
 
                                     </SwipeItems>
                                     <!--Command="{Binding Source={x:Reference Page}, Path=BindingContext.EditObjectInfoCommand}"
                                                 CommandParameter="{Binding .}"-->
+                                </SwipeView.RightItems>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="История" IconImageSource="ic_event_note.png"
+                                                    BackgroundColor="#00BCD4"
+                                                    />
+
+                                    </SwipeItems>
                                 </SwipeView.LeftItems>
                                 <Frame CornerRadius="20" BackgroundColor="White" HasShadow="True" HeightRequest="120">
                                     <VisualStateManager.VisualStateGroups>

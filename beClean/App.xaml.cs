@@ -1,12 +1,15 @@
-﻿using beClean.Services;
+﻿using beClean.DAL.DataServices;
+using beClean.Services;
 using beClean.Views.Master;
+using Plugin.BluetoothClassic.Abstractions;
 using Xamarin.Forms;
 
 namespace beClean
 {
     public partial class App : Application
     {
-
+        //public static IBluetoothManagedConnection BltConnection { get; internal set; }
+        public static IBluetoothAdapter BltAdapter { get; internal set; }
         public App()
         {
             // Fix ios crash
@@ -16,10 +19,16 @@ namespace beClean
         protected override void OnStart()
         {
             InitializeComponent();
-            //DependencyService.Register<MockDataStore>();
+            DataServices.Init();
+            NavigationService.Init();
+            InitBluetooth();
             MainPage = new AppMaster();
-        }
 
+        }
+        private void InitBluetooth()
+        {
+            App.BltAdapter = DependencyService.Resolve<IBluetoothAdapter>();
+        }
         protected override void OnSleep()
         {
         }

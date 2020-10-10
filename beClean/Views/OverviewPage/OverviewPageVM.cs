@@ -1,19 +1,19 @@
 ﻿using beClean.Models;
 using beClean.Views.Base;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace beClean.Views.OverviewPage
 {
     public class OverviewPageVM : BaseVM
     {
-        public IEnumerable<DeviceObject> Devices
+        public ObservableCollection<DeviceObject> Devices
         {
-            get => Get<IEnumerable<DeviceObject>>();
+            get => Get<ObservableCollection<DeviceObject>>();
             set => Set(value);
         }
         public OverviewPageVM() : base("Просмотр")
         {
-            Devices = new List<DeviceObject>(new[]
+            Devices = new ObservableCollection<DeviceObject>(new[]
             {
                 new DeviceObject(){Id=1,Name="Давление", Value = 23.0f, IconSource= "resource://beClean.Resources.Svg.devices.pressure.svg"},
                 new DeviceObject(){Id=2,Name="Температура", Value = 22.3f, IconSource= "resource://beClean.Resources.Svg.devices.temperature.svg"},

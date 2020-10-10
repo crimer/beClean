@@ -4,15 +4,20 @@ using Xamarin.Forms;
 
 namespace beClean.Views.Base
 {
-	public class BasePage : ContentPage, IDisposable
+	public class BaseTabbedPage : TabbedPage, IDisposable
 	{
 		protected BaseVM BaseViewModel => BindingContext as BaseVM;
-		
+		//public BasePage()
+		//{
+		//	this.Title = BaseViewModel.Title;
+		//}
 		public void Dispose()
 		{
-			if(BaseViewModel.IsDispose)
-				BaseViewModel?.Dispose();
+			BaseViewModel?.Dispose();
 		}
+
+
+
 
 		protected override void OnAppearing()
 		{
@@ -37,10 +42,8 @@ namespace beClean.Views.Base
 					await BaseViewModel.OnPageDisappearing();
 			});
 		}
-
 	}
-
-	public class BasePage<T> : BasePage where T : BaseVM
+	public class BaseTabbedPage<T> : BasePage where T : BaseVM
 	{
 		public T ViewModel => BaseViewModel as T;
 	}
