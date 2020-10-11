@@ -8,7 +8,7 @@ namespace beClean
 {
     public partial class App : Application
     {
-        //public static IBluetoothManagedConnection BltConnection { get; internal set; }
+        public static IBluetoothManagedConnection BltConnection { get; internal set; }
         public static IBluetoothAdapter BltAdapter { get; internal set; }
         public App()
         {

@@ -5,6 +5,7 @@ using Plugin.BluetoothClassic.Abstractions;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,14 +21,14 @@ namespace beClean.Views.DevicesPage.DeviceBC
         public ICommand SelectCommand => MakeCommand(async () => await SelectDevice());
         public ICommand DisconnectCommand => MakeCommand(async () => await Disconnect());
         public IBluetoothManagedConnection BltConnection { get; internal set; }
-        public ObservableCollection<BluetoothDevice> BluetoothClassicDevices
+        public ObservableCollection<BluetoothDeviceModel> BluetoothClassicDevices
         {
-            get => Get<ObservableCollection<BluetoothDevice>>();
+            get => Get<ObservableCollection<BluetoothDeviceModel>>();
             set => Set(value);
         }
-        public BluetoothDevice SelectedDevice
+        public BluetoothDeviceModel SelectedDevice
         {
-            get => Get<BluetoothDevice>();
+            get => Get<BluetoothDeviceModel>();
             set => Set(value);
         }
         public ObservableCollection<byte> RecivedData
@@ -35,7 +36,7 @@ namespace beClean.Views.DevicesPage.DeviceBC
             get => Get<ObservableCollection<byte>>();
             set => Set(value);
         }
-        public string Text
+        public string Msg
         {
             get => Get<string>();
             set => Set(value);
@@ -55,18 +56,20 @@ namespace beClean.Views.DevicesPage.DeviceBC
         public DeviceBCVM() : base("Устройства", false)
         {
             Scanning = false;
-            BluetoothClassicDevices = new ObservableCollection<BluetoothDevice>();
+            BluetoothClassicDevices = new ObservableCollection<BluetoothDeviceModel>();
             RecivedData = new ObservableCollection<byte>();
-            DataServices.BluetoothClassic.OnDataReceived += BluetoothClassic_OnDataReceived;
-            //if(!App.BltAdapter.Enabled)
-            //    App.BltAdapter.Enable();
+            //DataServices.BluetoothClassic.OnDataReceived += BluetoothClassic_OnDataReceived;
+            if (!App.BltAdapter.Enabled)
+                App.BltAdapter.Enable();
         }
 
-        private void BluetoothClassic_OnDataReceived(object sender, DAL.DataServices.BluetoothClassic.BluetoothRecivedEventArgs e)
-        {
-            string valor = System.Text.Encoding.ASCII.GetString(e.Data);
-            Debug.WriteLine($"--- Data Reviced from arduino : {valor}");
-        }
+        //private void BluetoothClassic_OnDataReceived(object sender, DAL.DataServices.BluetoothClassic.BluetoothRecivedEventArgs e)
+        //{
+        //    string valor = System.Text.Encoding.ASCII.GetString(e.Data);
+        //    Debug.WriteLine($"--- Data Reviced from arduino : {valor}");
+        //    Msg = e.Content;
+
+        //}
 
         private void OnStateChanged(object sender, StateChangedEventArgs stateChangedEventArgs)
         {
@@ -89,20 +92,41 @@ namespace beClean.Views.DevicesPage.DeviceBC
             {
                 RecivedData.Add(recivedEventArgs.Buffer.ToArray()[index]);
 
-                Text = System.Text.Encoding.ASCII.GetString(RecivedData.ToArray());
+                Msg = System.Text.Encoding.ASCII.GetString(RecivedData.ToArray());
             }
         }
+        //public byte[] ReadFully(Stream input)
+        //{
+        //    byte[] buffer = new byte[16 * 1024];
+        //    try
+        //    {
+        //        using (MemoryStream ms = new MemoryStream())
+        //        {
+        //            int read;
+        //            while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+        //            {
+        //                ms.Write(buffer, 0, read);
+        //            }
+        //            return ms.ToArray();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine($"ReadFully error: {ex.Message}");
+        //    }
+        //    return new byte[1024];
+        //}
         private async Task ScanDevices()
         {
             Scanning = true;
             BluetoothClassicDevices = null;
             try
             {
-                //var devices = App.BltAdapter.BondedDevices;
-                //BluetoothClassicDevices = new ObservableCollection<BluetoothDeviceModel>(devices);
+                var devices = App.BltAdapter.BondedDevices;
+                BluetoothClassicDevices = new ObservableCollection<BluetoothDeviceModel>(devices);
 
-                var devices = DataServices.BluetoothClassic.PairedDevices();
-                BluetoothClassicDevices = new ObservableCollection<BluetoothDevice>(devices);
+                //var devices = DataServices.BluetoothClassic.PairedDevices();
+                //BluetoothClassicDevices = new ObservableCollection<BluetoothDevice>(devices);
             }
             catch (Exception ex)
             {
@@ -114,14 +138,15 @@ namespace beClean.Views.DevicesPage.DeviceBC
         {
             try
             {
-                    App.BltAdapter.Disable();
+                //DataServices.BluetoothClassic.Disconnect();
+                App.BltAdapter.Disable();
                 if (BltConnection != null)
                 {
-                    //BltConnection.Dispose();
-                    //BltConnection.OnRecived -= OnRecived;
-                    //BltConnection.OnError -= OnError;
-                    //BltConnection.OnStateChanged -= OnStateChanged;
-                    //BltConnection.OnTransmitted -= OnTransmitted;
+                    BltConnection.Dispose();
+                    BltConnection.OnRecived -= OnRecived;
+                    BltConnection.OnError -= OnError;
+                    BltConnection.OnStateChanged -= OnStateChanged;
+                    BltConnection.OnTransmitted -= OnTransmitted;
                 }
             }
             catch (Exception ex)
@@ -133,8 +158,8 @@ namespace beClean.Views.DevicesPage.DeviceBC
         {
             try
             {
-                //var connected = await TryConnect(SelectedDevice);
-                DataServices.BluetoothClassic.Connect(SelectedDevice);
+                var connected = await TryConnect(SelectedDevice);
+                //DataServices.BluetoothClassic.Connect(SelectedDevice);
             }
             catch (Exception ex)
             {

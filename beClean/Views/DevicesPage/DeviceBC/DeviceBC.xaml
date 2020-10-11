@@ -29,7 +29,7 @@
                 <Label Text="Данные: " FontSize="18" TextColor="Black"/>
                 <ScrollView HeightRequest="80">
                     <StackLayout>
-                        <Label Text="{Binding Text}" FontSize="18" TextColor="Black"/>
+                        <Label Text="{Binding Msg}" FontSize="18" TextColor="Black"/>
                     </StackLayout>
                 </ScrollView>
             </StackLayout>

@@ -13,6 +13,6 @@
         x:Class="beClean.Views.DevicesPage.DevicesPage">
     
     <DeviceBC:DeviceBC Title="Bluetooth Classic"/>
-    <!--<DeviceBLE:DeviceBLE Title="Bluetooth LE"/>-->
+    <DeviceBLE:DeviceBLE Title="Bluetooth LE"/>
     
 </base:BaseTabbedPage>
