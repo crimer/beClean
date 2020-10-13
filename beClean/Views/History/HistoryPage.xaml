@@ -9,11 +9,11 @@
         xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
         xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
         xmlns:base="clr-namespace:beClean.Views.Base"
-        Title="Обзор"
+        Title="История"
         x:Class="beClean.Views.History.HistoryPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="История!"
+            <Label Text="История пока пуста!" FontSize="20" FontAttributes="Bold"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

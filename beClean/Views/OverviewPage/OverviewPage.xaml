@@ -6,14 +6,27 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Visual="Material"
+    xmlns:conventer="clr-namespace:beClean.Conventers"
     xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:base="clr-namespace:beClean.Views.Base"
     Title="Обзор"
     x:Class="beClean.Views.OverviewPage.OverviewPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conventer:MetricIconConventer x:Key="metricIconConventer" />
+            <conventer:MetricTypeConventer x:Key="metricTypeConventer" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource Gray_background}">
-                <CollectionView EmptyView="Устройств нет" SelectionMode="None" ItemsSource="{Binding Devices}" Margin="10,10">
+                <CollectionView SelectionMode="None" ItemsSource="{Binding Datum}" Margin="10,10">
+                    <CollectionView.EmptyView>
+                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                            <Label Text="Метрик нет" FontSize="20" FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </CollectionView.EmptyView>
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="15" HorizontalItemSpacing="15"/>
                     </CollectionView.ItemsLayout>
@@ -43,16 +56,21 @@
 
                                     <svg:SvgCachedImage
                                         Grid.Row="0"
-                                        Source="{Binding IconSource}"
+                                        Source="{Binding Type, Converter={StaticResource metricIconConventer}}"
                                         HorizontalOptions="Start"
                                         VerticalOptions="CenterAndExpand"
                                         WidthRequest="55"
                                         HeightRequest="55"/>
                                     <StackLayout Grid.Row="1">
                                         <Label Text="{Binding Name}" 
-                                            FontSize="20" FontAttributes="Bold" TextColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
-                                        <Label Text="{Binding Value,StringFormat='{0}%'}" 
-                                            FontSize="18" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+                                            FontSize="18" FontAttributes="Bold" TextColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Value}" 
+                                                FontSize="18" VerticalOptions="CenterAndExpand" />
+                                            <Label Text="{Binding Type, Converter={StaticResource metricTypeConventer}}" 
+                                                FontSize="18" VerticalOptions="CenterAndExpand" />
+                                        
+                                        </StackLayout>
                                     </StackLayout>
                                 </Grid>
                             </Frame>

@@ -1,13 +1,14 @@
-﻿namespace beClean.DAL.Models
+﻿using System.Collections.Generic;
+
+namespace beClean.DAL.Models
 {
 
-    public class DeviceResponce
+    public class DeviceData
     {
         public string Id { get; set; }
         public string Date { get; set; }
-        public Datum[] Data { get; set; }
+        public IEnumerable<Datum> Data { get; set; }
     }
-
     public class Datum
     {
         public string Type { get; set; }
