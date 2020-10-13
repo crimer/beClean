@@ -17,6 +17,7 @@
     <None Remove="Resources\Svg\devices\temperature.svg" />
     <None Remove="Resources\Svg\devices_svg_icon.svg" />
     <None Remove="Resources\Svg\logo_cloud.svg" />
+    <None Remove="Resources\Svg\master\history.svg" />
     <None Remove="Resources\Svg\master\overview.svg" />
     <None Remove="Resources\Svg\mdi_power_settings_new.svg" />
     <None Remove="Resources\Svg\rooms_svg_icon.svg" />
@@ -30,6 +31,7 @@
     <EmbeddedResource Include="Resources\Svg\devices\lightbulb.svg" />
     <EmbeddedResource Include="Resources\Svg\devices\pressure.svg" />
     <EmbeddedResource Include="Resources\Svg\devices\temperature.svg" />
+    <EmbeddedResource Include="Resources\Svg\master\history.svg" />
     <EmbeddedResource Include="Resources\Svg\master\overview.svg" />
     <EmbeddedResource Include="Resources\Svg\rooms\bedroom.svg" />
     <EmbeddedResource Include="Resources\Svg\rooms\living-room.svg" />
@@ -64,6 +66,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\History\HistoryPage.xaml.cs">
+      <DependentUpon>HistoryPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Views\DevicesPage\DeviceBC\DeviceBC.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -79,7 +87,7 @@
     <EmbeddedResource Update="Views\Master\AppMaster.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\NotConnected\NotConnected.xaml">
+    <EmbeddedResource Update="Views\History\HistoryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\OverviewPage\OverviewPage.xaml">

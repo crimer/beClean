@@ -8,8 +8,8 @@ namespace beClean
 {
     public partial class App : Application
     {
-        public static IBluetoothManagedConnection BltConnection { get; internal set; }
-        public static IBluetoothAdapter BltAdapter { get; internal set; }
+        //public static IBluetoothManagedConnection BltConnection { get; internal set; }
+        //public static IBluetoothAdapter BltAdapter { get; internal set; }
         public App()
         {
             // Fix ios crash
@@ -27,7 +27,8 @@ namespace beClean
         }
         private void InitBluetooth()
         {
-            App.BltAdapter = DependencyService.Resolve<IBluetoothAdapter>();
+            //App.BltAdapter = DependencyService.Resolve<IBluetoothAdapter>();
+            DataServices.BClassic.BltAdapter = DependencyService.Resolve<IBluetoothAdapter>();
         }
         protected override void OnSleep()
         {

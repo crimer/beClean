@@ -54,6 +54,7 @@ namespace beClean.Views.DevicesPage.DeviceBLE
             BluetoothLEDevices = new ObservableCollection<IDevice>();
             RecivedData = new ObservableCollection<byte>();
         }
+
         private async Task ScanDevices()
         {
             Scanning = true;
@@ -62,7 +63,7 @@ namespace beClean.Views.DevicesPage.DeviceBLE
             {
                 BluetoothLEDevices = DataServices.BluetoothLE.deviceList;
                 var t = DataServices.BluetoothLE.bluetoothAdapter.GetSystemConnectedOrPairedDevices().ToList();
-                //ConnectedDevices = new ObservableCollection<IDevice>(t);
+                
                 if (Scanning)
                     await DataServices.BluetoothLE.StartScanning();
                 else
@@ -74,6 +75,7 @@ namespace beClean.Views.DevicesPage.DeviceBLE
             }
             Scanning = false;
         }
+
         private async Task SelectDevice()
         {
             try
@@ -84,8 +86,8 @@ namespace beClean.Views.DevicesPage.DeviceBLE
             {
                 await App.Current.MainPage.DisplayAlert("Attention", ex.Message, "Ok");
             }
-
         }
+
         public async Task Disconnect()
         {
             try

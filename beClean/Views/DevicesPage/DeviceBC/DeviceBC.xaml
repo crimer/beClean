@@ -26,6 +26,7 @@
                     <BoxView  BackgroundColor="{Binding ConnectionState, Converter={StaticResource deviceConnect}}" HeightRequest="5" CornerRadius="20" WidthRequest="5" />
                     <Label Text="{Binding ConnectionState, StringFormat='Подключение: {0}'}" FontSize="18" TextColor="Black"/>
                 </StackLayout>
+                <Button Text="Send command" Command="{Binding SendArduinoCommand}"/>
                 <Label Text="Данные: " FontSize="18" TextColor="Black"/>
                 <ScrollView HeightRequest="80">
                     <StackLayout>
@@ -45,7 +46,7 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame CornerRadius="20" BackgroundColor="White" HasShadow="True">
+                        <Frame CornerRadius="20" BackgroundColor="White" HasShadow="True" IsClippedToBounds="True">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup Name="CommonStates">
                                     <VisualState Name="Normal" />
