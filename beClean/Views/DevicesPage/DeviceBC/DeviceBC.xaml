@@ -26,13 +26,12 @@
                     <BoxView  BackgroundColor="{Binding ConnectionState, Converter={StaticResource deviceConnect}}" HeightRequest="5" CornerRadius="20" WidthRequest="5" />
                     <Label Text="{Binding ConnectionState, StringFormat='Подключение: {0}'}" FontSize="18" TextColor="Black"/>
                 </StackLayout>
-                <Button Text="Send command" Command="{Binding SendArduinoCommand}"/>
-                <Label Text="Данные: " FontSize="18" TextColor="Black"/>
+                <!--<Label Text="Данные: " FontSize="18" TextColor="Black"/>
                 <ScrollView HeightRequest="80">
                     <StackLayout>
                         <Label Text="{Binding Msg}" FontSize="18" TextColor="Black"/>
                     </StackLayout>
-                </ScrollView>
+                </ScrollView>-->
             </StackLayout>
             <CollectionView ItemsSource="{Binding BluetoothClassicDevices}" EmptyView="Устройств нет" 
                             SelectedItem="{Binding SelectedDevice}" SelectionMode="Single" 

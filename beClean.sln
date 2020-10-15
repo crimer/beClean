@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "beClean.iOS", "beClean.iOS\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "beClean", "beClean\beClean.csproj", "{16FDB245-ACA3-4969-AEF2-1C610C326D6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "beClean.DAL", "beClean.DAL\beClean.DAL.csproj", "{AB59BC32-CB80-4FF0-B613-9A23DB2A690A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "beClean.Services", "beClean.DAL\beClean.Services.csproj", "{AB59BC32-CB80-4FF0-B613-9A23DB2A690A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

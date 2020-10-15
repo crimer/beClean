@@ -57,7 +57,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\beClean.DAL\beClean.DAL.csproj" />
+    <ProjectReference Include="..\beClean.DAL\beClean.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

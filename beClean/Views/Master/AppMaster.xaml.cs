@@ -1,4 +1,4 @@
-﻿using beClean.DAL.Models;
+﻿using beClean.Services.Models;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -17,8 +17,8 @@ namespace beClean.Views.Master
             MenuItems = new List<MasterPageItem>(new[]
             {
                 new MasterPageItem { Id = 1, Title = "Обзор", Type = typeof(OverviewPage.OverviewPage), IconSource="resource://beClean.Resources.Svg.master.overview.svg" },
-                //new MasterPageItem { Id = 2, Title = "Комнаты", Type = typeof(RoomsPage.RoomsPage), IconSource="resource://beClean.Resources.Svg.master.rooms.svg" },
-                new MasterPageItem { Id = 2, Title = "История", Type = typeof(History.HistoryPage), IconSource="resource://beClean.Resources.Svg.master.history.svg" },
+                new MasterPageItem { Id = 2, Title = "Комнаты", Type = typeof(RoomsPage.RoomsPage), IconSource="resource://beClean.Resources.Svg.master.rooms.svg" },
+                //new MasterPageItem { Id = 2, Title = "История", Type = typeof(History.HistoryPage), IconSource="resource://beClean.Resources.Svg.master.history.svg" },
                 new MasterPageItem { Id = 3, Title = "Устройства", Type = typeof(DevicesPage.DevicesPage), IconSource="resource://beClean.Resources.Svg.master.devices.svg" },
             });
 

@@ -1,4 +1,4 @@
-﻿using beClean.DAL.DataServices;
+﻿using beClean.Services.DataServices;
 using beClean.Views.Base;
 using Plugin.BLE.Abstractions.Contracts;
 using System;

@@ -1,5 +1,5 @@
-﻿using beClean.DAL.DataServices;
-using beClean.DAL.DataServices.BClassic;
+﻿using beClean.Services.DataServices;
+using beClean.Services.DataServices.BClassic;
 using beClean.Views.Base;
 using Plugin.BluetoothClassic.Abstractions;
 using System;
@@ -56,7 +56,7 @@ namespace beClean.Views.DevicesPage.DeviceBC
             Scanning = false;
             BluetoothClassicDevices = new ObservableCollection<BluetoothDeviceModel>();
             RecivedData = new ObservableCollection<byte>();
-            
+
             if (!DataServices.BClassic.CheckBluetooth())
                 DataServices.BClassic.BltAdapter.Enable();
 
@@ -98,7 +98,7 @@ namespace beClean.Views.DevicesPage.DeviceBC
 
         private void OnRecived(object sender, BCRecivedEventArgs recivedEventArgs)
         {
-            Msg = recivedEventArgs.Content;
+            Msg = recivedEventArgs.RawJson;
             Debug.WriteLine($"--- Data Recived: {Msg}");
         }
 

@@ -1,15 +1,16 @@
 ﻿using System;
 
-namespace beClean.DAL.DataServices.BClassic
+namespace beClean.Services.DataServices.BClassic
 {
     public class BCRecivedEventArgs : EventArgs
     {
-        public byte[] Data { get; set; }
-        public string Content { get; set; }
-        public BCRecivedEventArgs(byte[] data, string content)
+        public byte[] Bytes { get; set; }
+        public string RawJson { get; set; }
+
+        public BCRecivedEventArgs(byte[] bytes, string rawJson)
         {
-            Data = data;
-            Content = content;
+            Bytes = bytes;
+            RawJson = rawJson;
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿using Plugin.BluetoothClassic.Abstractions;
+﻿using beClean.Services.Models;
+using Plugin.BluetoothClassic.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace beClean.DAL.DataServices.BClassic
+namespace beClean.Services.DataServices.BClassic
 {
     public interface IBClassic
     {

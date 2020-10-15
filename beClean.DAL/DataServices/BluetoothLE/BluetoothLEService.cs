@@ -6,7 +6,7 @@ using Plugin.BLE;
 using Plugin.BLE.Abstractions.Contracts;
 using Plugin.BLE.Abstractions.EventArgs;
 
-namespace beClean.DAL.DataServices.BluetoothLE
+namespace beClean.Services.DataServices.BluetoothLE
 {
     public class BluetoothLEService : IBluetoothLEService
     {

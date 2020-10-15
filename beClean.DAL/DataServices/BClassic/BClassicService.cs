@@ -1,12 +1,16 @@
 ﻿using Android.App;
+using beClean.Droid.Services;
+using beClean.Services.Models;
+using Newtonsoft.Json;
 using Plugin.BluetoothClassic.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace beClean.DAL.DataServices.BClassic
+namespace beClean.Services.DataServices.BClassic
 {
     public class BClassicService : IBClassic
     {
@@ -73,21 +77,9 @@ namespace beClean.DAL.DataServices.BClassic
         {
             deviceList = new List<BluetoothDeviceModel>();
             recivedData = new List<byte>();
-            
-            // Включаем Bluetooth на телефоне если он отключен
-            //if (!CheckBluetooth())
-            //    BltAdapter.Enable();
         }
-        /// <summary>
-        /// Деструктор, отвязываем подписки на события
-        /// </summary>
-        //~BClassicService()
-        //{
-        //    BltConnection.OnRecived -= OnRecived;
-        //    BltConnection.OnError -= OnError;
-        //    BltConnection.OnStateChanged -= OnStateChanged;
-        //    BltConnection.OnTransmitted -= OnTransmitted;
-        //}
+   
+
 
         /// <summary>
         /// Включен ли Bluetooth на телефоне
@@ -108,6 +100,9 @@ namespace beClean.DAL.DataServices.BClassic
         /// <returns></returns>
         public IBluetoothManagedConnection Connect(BluetoothDeviceModel device)
         {
+            // Включаем Bluetooth на телефоне если он отключен
+            if (!CheckBluetooth())
+                BltAdapter.Enable();
             var connection = BltAdapter.CreateManagedConnection(device);
             try
             {
@@ -226,6 +221,16 @@ namespace beClean.DAL.DataServices.BClassic
                 }
                 recivedData.Add(simbol);
             }
+            
+            
+            IEnumerable<Datum> datas = JsonConvert.DeserializeObject<DeviceData>(RevicedString).Data;
+            if(datas.Any(x => x.Value == "20"))
+            {
+                string title = $"Hello message";
+                string message = $"Hello Nikita Shevchenko";
+                DataServices.Notifications.ScheduleNotification(title, message);
+            }
+
             BluetoothDataReceived?.Invoke(this, new BCRecivedEventArgs(recivedData.ToArray(), RevicedString));
         }
     }

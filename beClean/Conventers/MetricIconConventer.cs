@@ -1,4 +1,4 @@
-﻿using beClean.DAL.Models;
+﻿using beClean.Services.Models;
 using System;
 using System.Globalization;
 using Xamarin.Forms;

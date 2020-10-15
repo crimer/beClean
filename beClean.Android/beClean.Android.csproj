@@ -85,6 +85,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\NotificationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -113,9 +114,9 @@
     <AndroidResource Include="Resources\drawable\tab_feed.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\beClean.DAL\beClean.DAL.csproj">
+    <ProjectReference Include="..\beClean.DAL\beClean.Services.csproj">
       <Project>{AB59BC32-CB80-4FF0-B613-9A23DB2A690A}</Project>
-      <Name>beClean.DAL</Name>
+      <Name>beClean.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\beClean\beClean.csproj">
       <Project>{64679AF2-E0BE-4493-A075-04E0B2706E7C}</Project>

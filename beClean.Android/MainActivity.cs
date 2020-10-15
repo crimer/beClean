@@ -5,9 +5,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using FFImageLoading.Forms.Platform;
-using Android.Bluetooth;
 using FFImageLoading.Svg.Forms;
-using Plugin.BluetoothClassic.Droid;
 
 namespace beClean.Droid
 {
@@ -25,7 +23,7 @@ namespace beClean.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-            
+
             base.OnCreate(savedInstanceState);
 
             Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental", "CollectionView_Experimental", "Expander_Experimental");
@@ -63,4 +61,4 @@ namespace beClean.Droid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
-} 
+}

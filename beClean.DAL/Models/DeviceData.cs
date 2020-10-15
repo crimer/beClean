@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace beClean.DAL.Models
+namespace beClean.Services.Models
 {
 
     public class DeviceData

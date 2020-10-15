@@ -19,65 +19,65 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout BackgroundColor="{StaticResource Gray_background}">
-                <CollectionView SelectionMode="None" ItemsSource="{Binding Datum}" Margin="10,10">
-                    <CollectionView.EmptyView>
-                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                            <Label Text="Метрик нет" FontSize="20" FontAttributes="Bold"
-                                   HorizontalTextAlignment="Center"/>
-                        </StackLayout>
-                    </CollectionView.EmptyView>
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="15" HorizontalItemSpacing="15"/>
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            
-                            <Frame CornerRadius="20" BackgroundColor="White" IsClippedToBounds="True" HasShadow="True" HeightRequest="120">
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup Name="CommonStates">
-                                        <VisualState Name="Normal" >
-                                            <VisualState.Setters>
-                                                <Setter Property="BackgroundColor" Value="White" />
-                                            </VisualState.Setters>
-                                        </VisualState>
-                                        <VisualState Name="Selected">
-                                            <VisualState.Setters>
-                                                <Setter Property="BackgroundColor" Value="White" />
-                                            </VisualState.Setters>
-                                        </VisualState>
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
-                                <Grid>
-                                    <Grid.RowDefinitions>
+        <StackLayout BackgroundColor="{StaticResource Gray_background}" HorizontalOptions="CenterAndExpand">
+            <CollectionView SelectionMode="None" ItemsSource="{Binding Datum}" Margin="10,10">
+                <CollectionView.EmptyView>
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                        <Label Text="Метрик нет" FontSize="20" FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="15" HorizontalItemSpacing="15"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Frame CornerRadius="20" BackgroundColor="White" IsClippedToBounds="True" HasShadow="True" HeightRequest="120">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" >
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid>
+                                <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="auto"/>
                                 </Grid.RowDefinitions>
 
-                                    <svg:SvgCachedImage
-                                        Grid.Row="0"
-                                        Source="{Binding Type, Converter={StaticResource metricIconConventer}}"
-                                        HorizontalOptions="Start"
-                                        VerticalOptions="CenterAndExpand"
-                                        WidthRequest="55"
-                                        HeightRequest="55"/>
-                                    <StackLayout Grid.Row="1">
-                                        <Label Text="{Binding Name}" 
-                                            FontSize="18" FontAttributes="Bold" TextColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding Value}" 
-                                                FontSize="18" VerticalOptions="CenterAndExpand" />
-                                            <Label Text="{Binding Type, Converter={StaticResource metricTypeConventer}}" 
-                                                FontSize="18" VerticalOptions="CenterAndExpand" />
-                                        
-                                        </StackLayout>
-                                    </StackLayout>
-                                </Grid>
-                            </Frame>
+                                <svg:SvgCachedImage
+                                    Grid.Row="0"
+                                    Source="{Binding Type, Converter={StaticResource metricIconConventer}}"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="CenterAndExpand"
+                                    WidthRequest="55"
+                                    HeightRequest="55"/>
+                                <StackLayout Grid.Row="1">
+                                    <Label Text="{Binding Name}" 
+                                        FontSize="18" FontAttributes="Bold" TextColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Value}" 
+                                            FontSize="18" VerticalOptions="CenterAndExpand" />
+                                        <Label Text="{Binding Type, Converter={StaticResource metricTypeConventer}}" 
+                                            FontSize="18" VerticalOptions="CenterAndExpand" />
 
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
 
         </StackLayout>

@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-namespace beClean.DAL.DataServices.BluetoothLE
+namespace beClean.Services.DataServices.BluetoothLE
 {
     public interface IBluetoothLEService
     {

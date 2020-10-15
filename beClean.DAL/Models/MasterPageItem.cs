@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace beClean.DAL.Models
+namespace beClean.Services.Models
 {
     public class MasterPageItem
     {
