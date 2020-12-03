@@ -8,7 +8,7 @@ namespace beClean.Services.DataServices.Notifications
 
         void Initialize();
 
-        int ScheduleNotification(string title, string message);
+        int CreateNotification(string title, string message);
 
         void ReceiveNotification(string title, string message);
     }

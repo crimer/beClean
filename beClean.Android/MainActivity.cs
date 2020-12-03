@@ -1,15 +1,19 @@
 ﻿
 using Android;
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using beClean.Services.DataServices.Notifications;
 using FFImageLoading.Forms.Platform;
 using FFImageLoading.Svg.Forms;
+using Xamarin.Forms;
 
 namespace beClean.Droid
 {
-    [Activity(Label = "beClean", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "beClean", Icon = "@mipmap/icon", Theme = "@style/MainTheme", LaunchMode = LaunchMode.SingleTop,
+        MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         private readonly string[] Permissions =
@@ -34,8 +38,20 @@ namespace beClean.Droid
             CachedImageRenderer.InitImageViewHandler();
             var ignore = typeof(SvgCachedImage);
             CheckPermissions();
+            CreateNotificationFromIntent(Intent);
             LoadApplication(new App());
         }
+
+        private void CreateNotificationFromIntent(Intent intent)
+        {
+            if (intent?.Extras != null)
+            {
+                string title = intent.Extras.GetString(beClean.Droid.Services.NotificationService.TitleKey);
+                string message = intent.Extras.GetString(beClean.Droid.Services.NotificationService.MessageKey);
+                DependencyService.Get<INotificationService>().ReceiveNotification(title, message);
+            }
+        }
+
         private void CheckPermissions()
         {
             bool minimumPermissionsGranted = true;

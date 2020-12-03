@@ -228,7 +228,7 @@ namespace beClean.Services.DataServices.BClassic
             {
                 string title = $"Hello message";
                 string message = $"Hello Nikita Shevchenko";
-                DataServices.Notifications.ScheduleNotification(title, message);
+                DataServices.Notifications.CreateNotification(title, message);
             }
 
             BluetoothDataReceived?.Invoke(this, new BCRecivedEventArgs(recivedData.ToArray(), RevicedString));

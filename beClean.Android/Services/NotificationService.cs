@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Support.V4.App;
 using beClean.Droid.Services;
@@ -31,7 +32,7 @@ namespace beClean.Droid.Services
             CreateNotificationChannel();
         }
 
-        public int ScheduleNotification(string title, string message)
+        public int CreateNotification(string title, string message)
         {
             if (!channelInitialized)
             {
@@ -50,12 +51,16 @@ namespace beClean.Droid.Services
                 .SetContentIntent(pendingIntent)
                 .SetContentTitle(title)
                 .SetContentText(message)
-                //.SetLargeIcon(BitmapFactory.DecodeResource(AndroidApp.Context.Resources, Resource.Drawable.xamagonBlue))
-                //.SetSmallIcon(Resource.Drawable.xamagonBlue)
+                .SetAutoCancel(true)
+                .SetVibrate(new long[0])
+                .SetChannelId(channelId)
+                .SetPriority((int)NotificationPriority.High)
+                .SetVisibility((int)NotificationVisibility.Public)
+                .SetLargeIcon(BitmapFactory.DecodeResource(AndroidApp.Context.Resources, Resource.Drawable.xamagonBlue))
+                .SetSmallIcon(Resource.Drawable.xamagonBlue)
                 .SetDefaults((int)NotificationDefaults.Sound | (int)NotificationDefaults.Vibrate);
 
-            var notification = builder.Build();
-            manager.Notify(messageId, notification);
+            manager.Notify(messageId, builder.Build());
 
             return messageId;
         }
@@ -77,10 +82,12 @@ namespace beClean.Droid.Services
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
                 var channelNameJava = new Java.Lang.String(channelName);
-                var channel = new NotificationChannel(channelId, channelNameJava, NotificationImportance.Default)
-                {
-                    Description = channelDescription
-                };
+                var channel = new NotificationChannel(channelId, channelNameJava, NotificationImportance.Default);
+                channel.SetShowBadge(true);
+                channel.EnableLights(true);
+                channel.EnableVibration(true);
+                channel.Importance = NotificationImportance.High;
+
                 manager.CreateNotificationChannel(channel);
             }
 

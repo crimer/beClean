@@ -1,5 +1,7 @@
-﻿using beClean.Services.DataServices;
+﻿using beClean.Droid.Services;
+using beClean.Services.DataServices;
 using beClean.Services.DataServices.BClassic;
+using beClean.Services.DataServices.Notifications;
 using beClean.Views.Base;
 using Plugin.BluetoothClassic.Abstractions;
 using System;
@@ -8,6 +10,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace beClean.Views.DevicesPage.DeviceBC
 {
@@ -50,7 +53,8 @@ namespace beClean.Views.DevicesPage.DeviceBC
             set => Set(value);
         }
         #endregion
-
+        
+        private readonly INotificationService _notificationService;
         public DeviceBCVM() : base("Устройства", false)
         {
             Scanning = false;
@@ -67,6 +71,12 @@ namespace beClean.Views.DevicesPage.DeviceBC
                 DataServices.BClassic.BltConnection.OnStateChanged += OnStateChanged;
                 DataServices.BClassic.BltConnection.OnTransmitted += OnTransmitted;
             }
+            _notificationService = DependencyService.Get<INotificationService>();
+            _notificationService.NotificationReceived += (sender, eventArgs) =>
+            {
+                var evtData = (NotificationEventArgs)eventArgs;
+                // ShowNotification(evtData.Title, evtData.Message);
+            };
         }
 
         ~DeviceBCVM()
@@ -104,6 +114,7 @@ namespace beClean.Views.DevicesPage.DeviceBC
 
         private async Task ScanDevices()
         {
+            _notificationService.CreateNotification("Test notification", "hi Привет как дела!");
             Scanning = true;
             BluetoothClassicDevices.Clear();
             try
