@@ -70,17 +70,22 @@ namespace beClean.Views.DevicesPage.DeviceBC
                 DataServices.BClassic.BltConnection.OnStateChanged += OnStateChanged;
                 DataServices.BClassic.BltConnection.OnTransmitted += OnTransmitted;
             }
-            
+
             _notificationService = DependencyService.Get<INotificationService>();
-            _notificationService.NotificationReceived += (sender, eventArgs) =>
+            _notificationService.NotificationReceived += Notify();
+        }
+
+        private static EventHandler Notify()
+        {
+            return (sender, eventArgs) =>
             {
                 var evtData = (NotificationEventArgs)eventArgs;
-                // ShowNotification(evtData.Title, evtData.Message);
             };
         }
 
         ~DeviceBCVM()
         {
+            _notificationService.NotificationReceived -= Notify();
             if (DataServices.BClassic.BltConnection != null)
             {
                 DataServices.BClassic.OnDataReceived -= OnRecived;
@@ -97,7 +102,7 @@ namespace beClean.Views.DevicesPage.DeviceBC
 
         private void OnTransmitted(object sender, TransmittedEventArgs transmittedEventArgs)
         {
-            throw new NotImplementedException();
+            Debug.WriteLine("Transmitted");
         }
 
         private void OnError(object sender, ThreadExceptionEventArgs threadExceptionEventArgs)
@@ -113,7 +118,7 @@ namespace beClean.Views.DevicesPage.DeviceBC
 
         private async Task ScanDevices()
         {
-            _notificationService.CreateNotification("Test notification", "hi Привет как дела!");
+            _notificationService.CreateNotification("Тест уведомлений", "Привет как дела!");
             Scanning = true;
             BluetoothClassicDevices.Clear();
             try
@@ -123,7 +128,7 @@ namespace beClean.Views.DevicesPage.DeviceBC
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Attention", ex.Message, "Ok");
+                await App.Current.MainPage.DisplayAlert("Внимание ошибка", ex.Message, "Ok");
             }
             Scanning = false;
         }
@@ -135,7 +140,7 @@ namespace beClean.Views.DevicesPage.DeviceBC
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Attention", ex.Message, "Ok");
+                await App.Current.MainPage.DisplayAlert("Внимание ошибка", ex.Message, "Ok");
             }
         }
         private async Task SelectDevice()
@@ -153,7 +158,7 @@ namespace beClean.Views.DevicesPage.DeviceBC
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Attention", ex.Message, "Ok");
+                await App.Current.MainPage.DisplayAlert("Внимание ошибка", ex.Message, "Ok");
             }
         }
     }

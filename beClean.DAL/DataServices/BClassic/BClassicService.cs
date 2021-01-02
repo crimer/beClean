@@ -224,12 +224,6 @@ namespace beClean.Services.DataServices.BClassic
             
             
             IEnumerable<Datum> datas = JsonConvert.DeserializeObject<DeviceData>(RevicedString).Data;
-            if(datas.Any(x => x.Value == "20"))
-            {
-                string title = $"Hello message";
-                string message = $"Hello Nikita Shevchenko";
-                DataServices.Notifications.CreateNotification(title, message);
-            }
 
             BluetoothDataReceived?.Invoke(this, new BCRecivedEventArgs(recivedData.ToArray(), RevicedString));
         }
