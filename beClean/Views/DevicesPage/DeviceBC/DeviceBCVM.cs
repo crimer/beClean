@@ -20,7 +20,6 @@ namespace beClean.Views.DevicesPage.DeviceBC
         public ICommand ScanDevicesCommand => MakeCommand(async () => await ScanDevices());
         public ICommand SelectCommand => MakeCommand(async () => await SelectDevice());
         public ICommand DisconnectCommand => MakeCommand(async () => await Disconnect());
-        public ICommand SendArduinoCommand => MakeCommand(async () => await SendMyCommand());
 
         public ObservableCollection<BluetoothDeviceModel> BluetoothClassicDevices
         {
@@ -71,6 +70,7 @@ namespace beClean.Views.DevicesPage.DeviceBC
                 DataServices.BClassic.BltConnection.OnStateChanged += OnStateChanged;
                 DataServices.BClassic.BltConnection.OnTransmitted += OnTransmitted;
             }
+            
             _notificationService = DependencyService.Get<INotificationService>();
             _notificationService.NotificationReceived += (sender, eventArgs) =>
             {
@@ -81,14 +81,13 @@ namespace beClean.Views.DevicesPage.DeviceBC
 
         ~DeviceBCVM()
         {
-            DataServices.BClassic.OnDataReceived -= OnRecived;
-            DataServices.BClassic.BltConnection.OnError -= OnError;
-            DataServices.BClassic.BltConnection.OnStateChanged -= OnStateChanged;
-            DataServices.BClassic.BltConnection.OnTransmitted -= OnTransmitted;
-        }
-        private async Task SendMyCommand()
-        {
-            DataServices.BClassic.SendCommand(Consts.GET_HISTORY_COMMAND);
+            if (DataServices.BClassic.BltConnection != null)
+            {
+                DataServices.BClassic.OnDataReceived -= OnRecived;
+                DataServices.BClassic.BltConnection.OnError -= OnError;
+                DataServices.BClassic.BltConnection.OnStateChanged -= OnStateChanged;
+                DataServices.BClassic.BltConnection.OnTransmitted -= OnTransmitted;
+            }
         }
 
         private void OnStateChanged(object sender, StateChangedEventArgs stateChangedEventArgs)

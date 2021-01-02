@@ -1,5 +1,4 @@
-﻿using beClean.Services.Models;
-using System;
+﻿using System;
 using System.Globalization;
 using Xamarin.Forms;
 
@@ -13,14 +12,14 @@ namespace beClean.Conventers
             string data = "";
             switch (metricType)
             {
-                case "Temp":
+                case Consts.TEMP_PARAM:
                     data = "°C";
                     break;
-                case "Humidity":
+                case Consts.HUMIDITY_PARAM:
                     data = "%";
                     break;
-                case "Fire":
-                case "Light":
+                case Consts.FIRE_PARAM:
+                case Consts.LIGHT_PARAM:
                     data = "";
                     break;
                 default:

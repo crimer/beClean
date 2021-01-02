@@ -5,37 +5,47 @@ using Xamarin.Forms;
 
 namespace beClean.Conventers
 {
-    public class BCConnectConventer : IValueConverter
+    public class ConnectionStatusConventer : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var state = (ConnectionState)value;
-            Color color;
+            string connectionText = string.Empty;
             switch (state)
             {
                 case ConnectionState.Created:
+                    connectionText = "Создано";
+                    break;
                 case ConnectionState.Initializing:
+                    connectionText = "Начинается...";
+                    break;
                 case ConnectionState.Connecting:
-                    color = Color.Yellow;
+                    connectionText = "Подключение...";
                     break;
                 case ConnectionState.Connected:
-                    color = Color.Green;
+                    connectionText = "Подключено";
                     break;
                 case ConnectionState.Reconnecting:
-                    color = Color.Orange;
+                    connectionText = "Переподключение...";
                     break;
                 case ConnectionState.ErrorOccured:
+                    connectionText = "Ошибка";
+                    break;
                 case ConnectionState.Disconnecting:
+                    connectionText = "Отключение...";
+                    break;
                 case ConnectionState.Disconnected:
+                    connectionText = "Отключено";
+                    break;
                 case ConnectionState.Disposing:
                 case ConnectionState.Disposed:
-                    color = Color.Red;
+                    connectionText = "Соединение потеряно";
                     break;
                 default:
-                    color = Color.Red;
+                    connectionText = "";
                     break;
             }
-            return color;
+            return connectionText;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

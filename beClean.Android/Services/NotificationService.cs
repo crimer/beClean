@@ -56,8 +56,8 @@ namespace beClean.Droid.Services
                 .SetChannelId(channelId)
                 .SetPriority((int)NotificationPriority.High)
                 .SetVisibility((int)NotificationVisibility.Public)
-                .SetLargeIcon(BitmapFactory.DecodeResource(AndroidApp.Context.Resources, Resource.Drawable.xamagonBlue))
-                .SetSmallIcon(Resource.Drawable.xamagonBlue)
+                .SetLargeIcon(BitmapFactory.DecodeResource(AndroidApp.Context.Resources, Resource.Drawable.ic_toast_icon))
+                .SetSmallIcon(Resource.Drawable.ic_toast_icon)
                 .SetDefaults((int)NotificationDefaults.Sound | (int)NotificationDefaults.Vibrate);
 
             manager.Notify(messageId, builder.Build());

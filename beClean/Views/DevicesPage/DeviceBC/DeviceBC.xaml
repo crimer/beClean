@@ -13,25 +13,20 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <conventer:BCConnectConventer x:Key="deviceConnect" />
+            <conventer:ConnectionStatusConventer x:Key="connectionStaus" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Disconnect" Command="{Binding DisconnectCommand}" />
-        <ToolbarItem Text="Scan" Command="{Binding ScanDevicesCommand}"/>
+        <ToolbarItem Text="Отключиться" Command="{Binding DisconnectCommand}" />
+        <ToolbarItem Text="Найти" Command="{Binding ScanDevicesCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource Gray_background}">
             <StackLayout Margin="10">
                 <StackLayout Orientation="Horizontal">
                     <BoxView  BackgroundColor="{Binding ConnectionState, Converter={StaticResource deviceConnect}}" HeightRequest="5" CornerRadius="20" WidthRequest="5" />
-                    <Label Text="{Binding ConnectionState, StringFormat='Подключение: {0}'}" FontSize="18" TextColor="Black"/>
+                    <Label Text="{Binding ConnectionState, Converter={StaticResource connectionStaus} , StringFormat='Подключение: {0}'}" FontSize="18" TextColor="Black"/>
                 </StackLayout>
-                <!--<Label Text="Данные: " FontSize="18" TextColor="Black"/>
-                <ScrollView HeightRequest="80">
-                    <StackLayout>
-                        <Label Text="{Binding Msg}" FontSize="18" TextColor="Black"/>
-                    </StackLayout>
-                </ScrollView>-->
             </StackLayout>
             <CollectionView ItemsSource="{Binding BluetoothClassicDevices}" EmptyView="Устройств нет" 
                             SelectedItem="{Binding SelectedDevice}" SelectionMode="Single" 
