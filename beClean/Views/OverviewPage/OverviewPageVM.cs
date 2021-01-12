@@ -4,8 +4,6 @@ using beClean.Services.Models;
 using beClean.Views.Base;
 using Newtonsoft.Json;
 using Plugin.BluetoothClassic.Abstractions;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading;
@@ -27,13 +25,16 @@ namespace beClean.Views.OverviewPage
         public OverviewPageVM() : base("Просмотр")
         {
             // Mock
-            Datum = new ObservableCollection<Datum>(new[]
-            {
-                new Datum(){ Name="Давление", Value = "23.0", Type="Temp"},
-                new Datum(){ Name="Давление", Value = "23.0", Type="Humidity"},
-                new Datum(){ Name="Давление", Value = "23.0", Type="Fire"},
-                new Datum(){ Name="Давление", Value = "23.0", Type="Light"},
-            });
+            //Datum = new ObservableCollection<Datum>(new[]
+            //{
+            //    new Datum(){ Value = "23.0", Type=Consts.TEMP_PARAM},
+            //    new Datum(){ Value = "23.0", Type=Consts.HUMIDITY_PARAM},
+            //    new Datum(){ Value = "23.0", Type=Consts.FIRE_PARAM},
+            //    new Datum(){ Value = "23.0", Type=Consts.LIGHT_PARAM},
+            //    new Datum(){ Value = "23.0", Type=Consts.PRESSUE_PARAM},
+            //    new Datum(){ Value = "23.0", Type=Consts.CO_PARAM},
+            //    new Datum(){ Value = "23.0", Type=Consts.CO2_PARAM}
+            //});
 
             if (DataServices.BClassic.BltConnection != null)
             {
@@ -46,7 +47,7 @@ namespace beClean.Views.OverviewPage
 
         ~OverviewPageVM()
         {
-            if (DataServices.BClassic.BltConnection != null) 
+            if (DataServices.BClassic.BltConnection != null)
             {
                 DataServices.BClassic.OnDataReceived -= OnRecived;
                 DataServices.BClassic.BltConnection.OnError -= OnError;
@@ -57,7 +58,7 @@ namespace beClean.Views.OverviewPage
 
         private void OnTransmitted(object sender, TransmittedEventArgs transmittedEventArgs)
         {
-            throw new NotImplementedException();
+            Debug.WriteLine($"--- OnTransmitted");
         }
 
         private void OnError(object sender, ThreadExceptionEventArgs threadExceptionEventArgs)
@@ -68,8 +69,7 @@ namespace beClean.Views.OverviewPage
         private void OnRecived(object sender, BCRecivedEventArgs recivedEventArgs)
         {
             Json = recivedEventArgs.RawJson;
-            Debug.WriteLine($"--- Data Recived: {Json}");
-            IEnumerable<Datum> datas = JsonConvert.DeserializeObject<DeviceData>(Json).Data;
+            var datas = JsonConvert.DeserializeObject<DeviceData>(Json).Data;
             Datum = new ObservableCollection<Datum>(datas);
         }
     }

@@ -16,15 +16,16 @@
         <ResourceDictionary>
             <conventer:MetricIconConventer x:Key="metricIconConventer" />
             <conventer:MetricTypeConventer x:Key="metricTypeConventer" />
+            <conventer:MetricTextConventer x:Key="metricTextConventer" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource Gray_background}" HorizontalOptions="CenterAndExpand">
             <CollectionView SelectionMode="None" ItemsSource="{Binding Datum}" Margin="10,10">
                 <CollectionView.EmptyView>
-                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                        <Label Text="Метрик нет" FontSize="20" FontAttributes="Bold"
-                                HorizontalTextAlignment="Center"/>
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="Климатических характеристик нет" FontSize="20" FontAttributes="Bold"
+                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     </StackLayout>
                 </CollectionView.EmptyView>
                 <CollectionView.ItemsLayout>
@@ -62,7 +63,7 @@
                                     WidthRequest="55"
                                     HeightRequest="55"/>
                                 <StackLayout Grid.Row="1">
-                                    <Label Text="{Binding Name}" 
+                                    <Label Text="{Binding Type, Converter={StaticResource metricTextConventer}}" 
                                         FontSize="18" FontAttributes="Bold" TextColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Value}" 

@@ -10,6 +10,8 @@
     <None Remove="Resources\Svg\013-kitchen.svg" />
     <None Remove="Resources\Svg\023-hanger.svg" />
     <None Remove="Resources\Svg\devices\carbon-dioxide.svg" />
+    <None Remove="Resources\Svg\devices\CO.svg" />
+    <None Remove="Resources\Svg\devices\CO2.svg" />
     <None Remove="Resources\Svg\devices\fire.svg" />
     <None Remove="Resources\Svg\devices\humidity.svg" />
     <None Remove="Resources\Svg\devices\lightbulb.svg" />
@@ -26,6 +28,8 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Svg\devices\carbon-dioxide.svg" />
+    <EmbeddedResource Include="Resources\Svg\devices\CO2.svg" />
+    <EmbeddedResource Include="Resources\Svg\devices\CO.svg" />
     <EmbeddedResource Include="Resources\Svg\devices\fire.svg" />
     <EmbeddedResource Include="Resources\Svg\devices\humidity.svg" />
     <EmbeddedResource Include="Resources\Svg\devices\lightbulb.svg" />

@@ -24,6 +24,15 @@ namespace beClean.Conventers
                 case Consts.LIGHT_PARAM:
                     icon += "lightbulb.svg";
                     break;
+                case Consts.CO_PARAM:
+                    icon += "CO.svg";
+                    break;
+                case Consts.CO2_PARAM:
+                    icon += "CO2.svg";
+                    break;
+                case Consts.PRESSUE_PARAM:
+                    icon += "pressure.svg";
+                    break;
                 default:
                     icon = "";
                     break;

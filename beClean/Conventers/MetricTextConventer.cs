@@ -4,33 +4,40 @@ using Xamarin.Forms;
 
 namespace beClean.Conventers
 {
-    public class MetricTypeConventer : IValueConverter
+    public class MetricTextConventer : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string metricType = (string)value;
-            string data = "";
+            string metricNme = string.Empty;
             switch (metricType)
             {
                 case Consts.TEMP_PARAM:
-                    data = "°C";
+                    metricNme = "Температура";
                     break;
                 case Consts.HUMIDITY_PARAM:
-                    data = "%";
+                    metricNme = "Влажность";
                     break;
                 case Consts.FIRE_PARAM:
+                    metricNme = "Индикация пожара";
+                    break;
                 case Consts.LIGHT_PARAM:
+                    metricNme = "Освешенность";
+                    break;
                 case Consts.CO_PARAM:
+                    metricNme = "Угарный газ";
+                    break;
                 case Consts.CO2_PARAM:
+                    metricNme = "Углекислый газ";
+                    break;
                 case Consts.PRESSUE_PARAM:
-                    data = "";
+                    metricNme = "Атмосферное давление";
                     break;
                 default:
-                    data = "";
+                    metricNme = "";
                     break;
-
             }
-            return data;
+            return metricNme;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
