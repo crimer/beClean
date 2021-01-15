@@ -19,16 +19,23 @@ namespace beClean.Conventers
                     data = "%";
                     break;
                 case Consts.FIRE_PARAM:
-                case Consts.LIGHT_PARAM:
-                case Consts.CO_PARAM:
-                case Consts.CO2_PARAM:
-                case Consts.PRESSUE_PARAM:
                     data = "";
+                    break;
+                case Consts.LIGHT_PARAM:
+                    data = "%";
+                    break;
+                case Consts.CO_PARAM:
+                    data = "%";
+                    break;
+                case Consts.CO2_PARAM:
+                    data = "ppm";
+                    break;
+                case Consts.PRESSUE_PARAM:
+                    data = "мм.р.т.";
                     break;
                 default:
                     data = "";
                     break;
-
             }
             return data;
         }

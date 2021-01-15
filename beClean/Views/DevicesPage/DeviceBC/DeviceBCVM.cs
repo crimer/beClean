@@ -53,7 +53,6 @@ namespace beClean.Views.DevicesPage.DeviceBC
         }
         #endregion
         
-        private readonly INotificationService _notificationService;
         public DeviceBCVM() : base("Устройства", false)
         {
             Scanning = false;
@@ -70,22 +69,10 @@ namespace beClean.Views.DevicesPage.DeviceBC
                 DataServices.BClassic.BltConnection.OnStateChanged += OnStateChanged;
                 DataServices.BClassic.BltConnection.OnTransmitted += OnTransmitted;
             }
-
-            _notificationService = DependencyService.Get<INotificationService>();
-            _notificationService.NotificationReceived += Notify();
-        }
-
-        private static EventHandler Notify()
-        {
-            return (sender, eventArgs) =>
-            {
-                var evtData = (NotificationEventArgs)eventArgs;
-            };
         }
 
         ~DeviceBCVM()
         {
-            _notificationService.NotificationReceived -= Notify();
             if (DataServices.BClassic.BltConnection != null)
             {
                 DataServices.BClassic.OnDataReceived -= OnRecived;
@@ -118,7 +105,6 @@ namespace beClean.Views.DevicesPage.DeviceBC
 
         private async Task ScanDevices()
         {
-            _notificationService.CreateNotification("Тест уведомлений", "Привет как дела!");
             Scanning = true;
             BluetoothClassicDevices.Clear();
             try

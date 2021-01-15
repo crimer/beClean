@@ -19,6 +19,9 @@
             <conventer:MetricTextConventer x:Key="metricTextConventer" />
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="ic_action_notifications.png" Command="{Binding NotifyCommand}" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource Gray_background}" HorizontalOptions="CenterAndExpand">
             <CollectionView SelectionMode="None" ItemsSource="{Binding Datum}" Margin="10,10">
